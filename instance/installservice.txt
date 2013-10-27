@@ -1,0 +1,3 @@
+nssm install solr "%JavaExe%" -Dsolr.solr.home="\"%CD%\solr"\"
+-Djetty.home="\"%CD%"\" -Djetty.logs="\"%CD%\logs"\" -cp
+"\"%CD%\lib\*.jar"\";"\"%CD%\start.jar"\" -jar "\"%CD%\start.jar"\"

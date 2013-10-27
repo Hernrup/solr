@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)https://drupal.org/node/1359598 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr" class="js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  
+<!--[if IE]><script language="javascript" type="text/javascript" src="/sites/all/modules/flot/flot/excanvas.min.js"></script><![endif]-->
+<link rel="prev" href="https://drupal.org/node/1053068">
+<link rel="up" href="https://drupal.org/node/1053074">
+<link rel="next" href="https://drupal.org/node/1338914">
+<link rel="shortcut icon" href="https://drupal.org/misc/favicon.ico" type="image/x-icon">
+  <title>Installing Apache Solr on Windows 2008 with Jetty Running as a Service | drupal.org</title>
+  <link type="text/css" rel="stylesheet" media="all" href="./Installing Apache Solr on Windows 2008 with Jetty Running as a Service   drupal.org_files/css_46139a31c16360a1b2b9f1634e7f07d5.css">
+  <script type="text/javascript" async="" src="./Installing Apache Solr on Windows 2008 with Jetty Running as a Service   drupal.org_files/ga.js"></script><script type="text/javascript" src="./Installing Apache Solr on Windows 2008 with Jetty Running as a Service   drupal.org_files/js_dcf6e63ebda2fa3d907d1e2441869269.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"html5UserGeolocationPrecision":"1","jcarousel":{"ajaxPath":"\/jcarousel\/ajax\/views"}});
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+if (Drupal.jsEnabled) { Drupal.flot = {}; }
+//--><!]]>
+</script>
+  <!--[if lte IE 6]><style>img, div#header-screen, a { behavior: url("/sites/all/themes/bluecheese/iepngfix.htc") }</style><![endif]-->
+</head>
+
+<body class="not-front not-logged-in page-node node-type-book one-sidebar sidebar-right drupalorg-site-main">
+  <div id="skip-links">
+    <a href="https://drupal.org/node/1359598#content">Skip to main content</a>
+    <a href="https://drupal.org/node/1359598#search">Skip to search</a>
+  </div>
+    <div id="header" class="clear-block">
+    <div id="header-screen" class="clear-block">
+      <div id="header-inner" class="container-12 clear-block">
+        <div id="nav-header" class="grid-12">
+          <ul><li class="menu-2 first"><a href="https://drupal.org/start" title="Getting Started with Drupal">Get Started</a></li>
+<li class="menu-4"><a href="https://drupal.org/community" title="Drupal Community">Community</a></li>
+<li class="menu-16434"><a href="https://drupal.org/documentation" title="Drupal Documentation">Documentation</a></li>
+<li class="menu-14"><a href="https://drupal.org/support" title="Support for using Drupal">Support</a></li>
+<li class="menu-10468"><a href="https://drupal.org/download" title="Download and Extend Drupal">Download &amp; Extend</a></li>
+<li class="menu-10"><a href="https://drupal.org/drupal-services" title="Buy Drupal Products and Services">Marketplace</a></li>
+<li class="menu-25050 last"><a href="https://drupal.org/about" title="About Drupal">About</a></li>
+</ul>        </div> <!-- /#nav-header -->
+
+        <div id="header-content" class="grid-12">
+          <div id="header-left" class="grid-7 alpha">
+            <div id="header-left-inner" class="grid-6 alpha">
+              <div id="site-name"><a href="https://drupal.org/" title="Drupal">Drupal</a></div>
+                          </div> <!-- /#header-left-inner -->
+          </div> <!-- /#header-left -->
+
+          <div id="header-right" class="grid-5 omega">
+            <div id="header-right-inner">
+              <form action="https://drupal.org/search/site" accept-charset="UTF-8" method="post" id="search-theme-form">
+<div><div id="search">
+  <div class="form-item" id="edit-search-theme-form-1-wrapper">
+ <input type="text" maxlength="128" name="search_theme_form" id="edit-search-theme-form-1" size="15" value="" placeholder="Search drupal.org" class="form-text">
+</div>
+  <input type="image" id="search-theme-form-submit" src="./Installing Apache Solr on Windows 2008 with Jetty Running as a Service   drupal.org_files/btn-search.png" alt="Search" name="op">
+  <div id="search-theme-form-advanced"><fieldset class=" collapsible collapsed"><legend class="collapse-processed"><a href="https://drupal.org/node/1359598#">Refine your search</a></legend><div class="fieldset-wrapper"><div class="form-radios"><div class="form-divider"><div class="form-item" id="edit-meta-type--wrapper">
+ <label class="option" for="edit-meta-type-"><input type="radio" id="edit-meta-type-" name="meta_type" value="" checked="checked" class="form-radio"> All</label>
+</div>
+<div class="form-item" id="edit-meta-type-module-wrapper">
+ <label class="option" for="edit-meta-type-module"><input type="radio" id="edit-meta-type-module" name="meta_type" value="module" class="form-radio"> Modules</label>
+</div>
+<div class="form-item" id="edit-meta-type-theme-wrapper">
+ <label class="option" for="edit-meta-type-theme"><input type="radio" id="edit-meta-type-theme" name="meta_type" value="theme" class="form-radio"> Themes</label>
+</div>
+</div><div class="form-item" id="edit-meta-type-documentation-wrapper">
+ <label class="option" for="edit-meta-type-documentation"><input type="radio" id="edit-meta-type-documentation" name="meta_type" value="documentation" class="form-radio"> Documentation</label>
+</div>
+<div class="form-item" id="edit-meta-type-forum-issues-wrapper">
+ <label class="option" for="edit-meta-type-forum-issues"><input type="radio" id="edit-meta-type-forum-issues" name="meta_type" value="forum-issues" class="form-radio"> Forums &amp; Issues</label>
+</div>
+<div class="form-item" id="edit-meta-type-group-wrapper">
+ <label class="option" for="edit-meta-type-group"><input type="radio" id="edit-meta-type-group" name="meta_type" value="group" class="form-radio"> Groups</label>
+</div>
+</div></div></fieldset>
+</div>
+  <input type="hidden" name="form_build_id" id="form-82fff4f70e3226a7a525dbf6ceb8cbfa" value="form-82fff4f70e3226a7a525dbf6ceb8cbfa">
+<input type="hidden" name="form_id" id="edit-search-theme-form" value="search_theme_form">
+</div>
+
+</div></form>
+            </div> <!-- /#header-right-inner -->
+          </div> <!-- /#header-right -->
+        </div> <!-- /#header-content -->
+
+        <div id="nav-masthead" class="grid-12">
+          <ul><li class="homepage first"><a href="https://drupal.org/home">Drupal Homepage</a></li>
+<li class="login-register last"><a href="https://drupal.org/user?destination=node%2F1359598">Log in / Register</a></li>
+</ul>        </div> <!-- /#nav-masthead -->
+      </div> <!-- /#header-inner -->
+    </div>
+  </div> <!-- /#header -->
+
+  <div id="page" class="container-12 clear-block">
+    <div id="page-inner">
+
+      <div id="page-heading" class="grid-12">
+
+                  <div id="page-title-tools" class="clear-block">
+
+            <div class="grid-8 alpha">
+                                                <div id="page-title" class="h2">Community Documentation</div>
+                                          </div>
+
+                          <div id="page-tools" class="grid-4 omega">
+                              </div> <!-- /#page-tools -->
+                      </div> <!-- /#page-title-tools -->
+
+                      <div id="nav-content" class="clear-block">
+              <ul class="links"><li class="home active first"><a href="https://drupal.org/documentation" class="active">Community Docs Home</a></li>
+<li class="install"><a href="https://drupal.org/documentation/install">Installation Guide</a></li>
+<li class="admin last"><a href="https://drupal.org/documentation/administer">Administration Guide</a></li>
+</ul>            </div> <!-- /#nav-content -->
+          
+          
+                      <h1 id="page-subtitle">Installing Apache Solr on Windows 2008 with Jetty Running as a Service</h1>
+          
+        
+      </div> <!-- /#page-heading -->
+
+      <div id="column-left" class="grid-8">
+
+        
+        
+        <div id="content" class="clear-block">
+                    
+          <div id="content-inner" class="clear-block"><div id="node-1359598" class="node clear-block node-type-book">
+
+  
+  
+  
+  <div class="node-content">
+    <p class="updated"><em>Last updated December 2, 2011. Created by <a href="https://drupal.org/user/118428" title="View user profile.">mherchel</a> on December 2, 2011.<br> <a href="https://drupal.org/user?destination=node%2F1359598">Log in to edit this page</a>.</em></p>
+<p></p><p><em>Please note that this article was reproduced with permission from <a href="http://beckelman.net/" rel="nofollow">Bill Beckelman's website</a>. The original article can be found <a href="http://beckelman.net/post/2011/02/22/Setup-Apache-Solr-on-Windows-with-Jetty-Running-as-a-Service-via-NSSM.aspx" rel="nofollow">here</a>. This guide has been used succesfully with Drupal. </em></p><br><h2>Initial Solr Setup</h2><br><p>1. Install the latest Java JDK from <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" rel="nofollow">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a>.<br>
+Make sure to select 64bit version if you need it.</p>
+<p>  </p><p><img title="image" border="0" alt="image" src="./Installing Apache Solr on Windows 2008 with Jetty Running as a Service   drupal.org_files/solr_windows_installation-1.png" width="589" height="473"></p><br><p>&nbsp;</p><br><p>2. Download Solr 1.4.1 from one of the mirrors at <a href="http://www.apache.org/dyn/closer.cgi/lucene/solr/" rel="nofollow">http://www.apache.org/dyn/closer.cgi/lucene/solr/</a><br>
+(at the time of writing, not all mirrors seem to be hosting 1.4.1, but most seem<br>
+to have at least 1.4.0)</p>
+<p>  </p><p><img title="image" border="0" alt="image" src="./Installing Apache Solr on Windows 2008 with Jetty Running as a Service   drupal.org_files/solr_windows_installation-2.png" width="566" height="236"></p><br><p>3. Unzip the Solr download. You should have the files listed in the image<br>
+below. Open the example folder.</p>
+<p>  </p><p><img title="image" border="0" alt="image" src="./Installing Apache Solr on Windows 2008 with Jetty Running as a Service   drupal.org_files/solr_windows_installation-3.png" width="166" height="297"></p><br><p>4. Copy the etc, lib, logs, solr, webapps, and start.jar folders to C:\solr<br>
+(you will need to create the folder at C:\solr)</p>
+<p>  </p><p><img title="image" border="0" alt="image" src="./Installing Apache Solr on Windows 2008 with Jetty Running as a Service   drupal.org_files/solr_windows_installation-4.png" width="180" height="260"></p><br><p>5. Now open the C:\solr\solr folder and copy the contents back to the root<br>
+C:\solr folder. When you are done you can delete the C:\solr\solr folder.</p>
+<p>  </p><p><img title="image" border="0" alt="image" src="./Installing Apache Solr on Windows 2008 with Jetty Running as a Service   drupal.org_files/solr_windows_installation-5.png" width="141" height="171"></p><br><p>At this point your C:\solr directory should look like the image below.</p>
+<p>  </p><p><img title="image" border="0" alt="image" src="./Installing Apache Solr on Windows 2008 with Jetty Running as a Service   drupal.org_files/solr_windows_installation-6.png" width="157" height="199"></p><br><p>6. Solr can now be run at this point if you start it from the command line.<br>
+Change your directory to c:\solr and then run:&nbsp; <em><strong>java<br>
+-Dsolr.solr.home=c:/solr/ -jar start.jar</strong></em>&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&lt;= slash direction seems to matter</p>
+<p>  </p><p><img title="image" border="0" alt="image" src="./Installing Apache Solr on Windows 2008 with Jetty Running as a Service   drupal.org_files/solr_windows_installation-7.png" width="681" height="144"></p><br><p>7. If you go to <a href="http://localhost:8983/solr/" rel="nofollow">http://localhost:8983/solr/</a> you should be<br>
+greeted with the Welcome to Solr message.</p>
+<p>  </p><p><img title="image" border="0" alt="image" src="./Installing Apache Solr on Windows 2008 with Jetty Running as a Service   drupal.org_files/solr_windows_installation-8.png" width="318" height="170">&nbsp;</p><br><h2></h2><br><h2>&nbsp;</h2><br><h2>Setup Jetty to Run as a Windows Service using NSSM</h2><br><p>Now that Solr is up and running, we can work on getting Jetty to run as a<br>
+Windows service. Since Jetty comes bundled with Solr, all we need is a way to<br>
+run it as a service. There are several options to do this, but the one that I<br>
+have found works the best and is the most compatible across windows environments<br>
+is <a href="https://iain.cx/src/nssm/" rel="nofollow">NSSM – the Non Sucking Service</a>.</p><br><p>Once you download NSSM, open the win32 or win64 folder as appropriate and<br>
+copy nssm.exe to your c:\solr folder.</p><br><p><img title="image" border="0" alt="image" src="./Installing Apache Solr on Windows 2008 with Jetty Running as a Service   drupal.org_files/solr_windows_installation-9.png" width="150" height="114"> =&gt; <img title="image" border="0" alt="image" src="./Installing Apache Solr on Windows 2008 with Jetty Running as a Service   drupal.org_files/solr_windows_installation-10.png" width="128" height="49"></p><br><p>1. Open an elevated command prompt and change the directory to C:\solr. and<br>
+then run:&nbsp; <strong><em>nssm install Solr</em></strong></p><br><p><img title="image" border="0" alt="image" src="./Installing Apache Solr on Windows 2008 with Jetty Running as a Service   drupal.org_files/solr_windows_installation-11.png" width="681" height="102"></p><br><p>A dialog will open. Select java.exe as the Application located at<br>
+C:\Windows\System32\</p><br><p><img title="image" border="0" alt="image" src="./Installing Apache Solr on Windows 2008 with Jetty Running as a Service   drupal.org_files/solr_windows_installation-12.png" width="350" height="188"></p><br><p>2. In the options input box enter: <em><strong>-Dsolr.solr.home=C:/solr/<br>
+-Djetty.home=C:/solr/ -Djetty.logs=C:/solr/logs/ -cp<br>
+C:/solr/lib/*.jar;C:/solr/start.jar -jar C:/solr/start.jar</strong></em></p><br><p>Important! If you copy and paste the line above make sure to take out the<br>
+line break.</p><br><p>3. Click Install service. You should get a Service successfully installed<br>
+message.</p><br><p><img title="image" border="0" alt="image" src="./Installing Apache Solr on Windows 2008 with Jetty Running as a Service   drupal.org_files/solr_windows_installation-13.png" width="223" height="158"></p><br><p>4. Finally run: net start Solr</p><br><p><img title="image" border="0" alt="image" src="./Installing Apache Solr on Windows 2008 with Jetty Running as a Service   drupal.org_files/solr_windows_installation-14.png" width="681" height="102"></p><br><p>5. Jetty should now be running as a service. Check by going to <a href="http://localhost/8983/solr" rel="nofollow">http://localhost/8983/solr</a></p><br><p>&nbsp;</p><br><p>Not working? The best way to see what is going on is to stop the service and<br>
+then run <em><strong>java.exe -Dsolr.solr.home=C:/solr/ -Djetty.home=C:/solr/<br>
+-Djetty.logs=C:/solr/logs/ -cp C:/solr/lib/*.jar;C:/solr/start.jar -jar<br>
+C:/solr/start.jar</strong></em> from the C:\Windows\System32\ folder and review<br>
+all the log information in the output.</p><br><p>&nbsp;</p>
+  <div id="book-navigation-257" class="book-navigation">
+    
+        <div class="page-links clear-block">
+              <a href="https://drupal.org/node/1053068" class="page-previous" title="Go to previous page">‹ Deployment of Solr servers for performance and availability</a>
+                    <a href="https://drupal.org/node/1053074" class="page-up" title="Go to parent page">up</a>
+                    <a href="https://drupal.org/node/1338914" class="page-next" title="Go to next page">Manipulating Apache Solr search results using the QueryElevationComponent and elevate.xml ›</a>
+          </div>
+    
+  </div>
+  </div>
+
+  <div class="node-footer"><span class="links"><span class="comment_forbidden"><a href="https://drupal.org/user/login?destination=comment%2Freply%2F1359598%23comment-form">Login</a> or <a href="https://drupal.org/user/register?destination=comment%2Freply%2F1359598%23comment-form">register</a> to post comments</span></span><p class="support"><strong>Looking for support? Visit the <a href="https://drupal.org/forum">Drupal.org forums</a>, or join #drupal-support in <a href="https://drupal.org/irc">IRC</a>.</strong></p></div></div>
+  <div id="comments">
+    <h2>Comments</h2>
+    <a id="comment-6684676"></a>
+<div class="comment comment-published clear-block comment-odd"><div class="comment-inner">
+  <div class="comment-heading">
+        <h3 class="comment-title"><a href="https://drupal.org/node/1359598#comment-6684676" class="active">Works Perfectly thanks...</a></h3>
+    <div class="submitted">Posted by <a href="https://drupal.org/user/1477254" title="View user profile.">choitz</a> on <em>November 3, 2012 at 2:37am</em>        </div>
+  </div>
+  <div class="content">
+    <div class="clear-block">
+            <p>Two things got me though: 6. Solr can now be run at this point if you start it from the command line.<br><strong>Change your directory to c:\solr </strong><br>
+I tried lots until I took the time to re-read this!!</p>
+<p>Just subtle update on Setup Jetty to Run as a Windows Service using NSSM</p>
+<p>A dialog will open. Select java.exe as the Application located at<br>
+C:\Windows\System32\</p>
+<p>XXX WRONG ON 64 bit C:\Program Files (x86)\Java\jre7\bin XXX - needs JDK not JRE!<br>
+C:\Program Files\Java\jre7\</p>
+<p>I made that harder than it should be!!!</p>
+<p>Thanks though, brilliant walk through!</p>
+    </div>
+        <ul class="links"><li class="comment_forbidden first last"><span><a href="https://drupal.org/user/login?destination=comment%2Freply%2F1359598%23comment-form">Login</a> or <a href="https://drupal.org/user/register?destination=comment%2Freply%2F1359598%23comment-form">register</a> to post comments</span></li>
+</ul>  </div>
+</div></div>
+<div class="indented"><a id="comment-7165074"></a>
+<div class="comment comment-published clear-block comment-even"><div class="comment-inner">
+  <div class="comment-heading">
+        <h3 class="comment-title"><a href="https://drupal.org/node/1359598#comment-7165074" class="active">Are there instructions</a></h3>
+    <div class="submitted">Posted by <a href="https://drupal.org/user/2309826" title="View user profile.">brad.baker</a> on <em>March 11, 2013 at 6:29pm</em>        </div>
+  </div>
+  <div class="content">
+    <div class="clear-block">
+            <p>Are there instructions available for doing this on Apache Solr 4.1? These don't seem to work with the new builds. I get:</p>
+<p>HTTP ERROR: 404<br>
+Problem accessing /solr/. Reason:<br>
+    Not Found<br>
+--------------------------------------------------------------------------------<br>
+Powered by Jetty://</p>
+    </div>
+        <ul class="links"><li class="comment_forbidden first last"><span><a href="https://drupal.org/user/login?destination=comment%2Freply%2F1359598%23comment-form">Login</a> or <a href="https://drupal.org/user/register?destination=comment%2Freply%2F1359598%23comment-form">register</a> to post comments</span></li>
+</ul>  </div>
+</div></div>
+<div class="indented"><a id="comment-7329166"></a>
+<div class="comment comment-published clear-block comment-odd"><div class="comment-inner">
+  <div class="comment-heading">
+        <h3 class="comment-title"><a href="https://drupal.org/node/1359598#comment-7329166" class="active">Probably you have used Solr</a></h3>
+    <div class="submitted">Posted by <a href="https://drupal.org/user/178480" title="View user profile.">AlexV</a> on <em>April 22, 2013 at 12:44pm</em>        </div>
+  </div>
+  <div class="content">
+    <div class="clear-block">
+            <p>Probably you have used Solr 4.x.<br>
+Try to use Solr 3.x</p>
+<p>Please read "modules\search_api_solr\INSTALL.txt" for further info.<br>
+- Solr 4.x is not supported by this module yet.</p>
+    </div>
+        <ul class="links"><li class="comment_forbidden first last"><span><a href="https://drupal.org/user/login?destination=comment%2Freply%2F1359598%23comment-form">Login</a> or <a href="https://drupal.org/user/register?destination=comment%2Freply%2F1359598%23comment-form">register</a> to post comments</span></li>
+</ul>  </div>
+</div></div>
+<div class="indented"><a id="comment-7893339"></a>
+<div class="comment comment-published clear-block comment-even"><div class="comment-inner">
+  <div class="comment-heading">
+        <h3 class="comment-title"><a href="https://drupal.org/node/1359598#comment-7893339" class="active">This is a nice tutorial for</a></h3>
+    <div class="submitted">Posted by <a href="https://drupal.org/user/2412262" title="View user profile.">mvdve</a> on <em>September 24, 2013 at 12:19pm</em>        </div>
+  </div>
+  <div class="content">
+    <div class="clear-block">
+            <p>This is a nice tutorial for 4.4</p>
+<p><a href="http://www.nopaccelerate.com/wiki/installing-apache-solr/" rel="nofollow">Solr on IIS tutorial</a></p>
+    </div>
+        <ul class="links"><li class="comment_forbidden first last"><span><a href="https://drupal.org/user/login?destination=comment%2Freply%2F1359598%23comment-form">Login</a> or <a href="https://drupal.org/user/register?destination=comment%2Freply%2F1359598%23comment-form">register</a> to post comments</span></li>
+</ul>  </div>
+</div></div>
+</div></div></div>  </div>
+</div>
+                  </div> <!-- /#content -->
+
+      </div> <!-- /#column-left -->
+
+              <div id="column-right" class="grid-4">
+          <div id="column-right-region">
+            <div id="block-drupalorg_handbook-meta-sidebar" class="block block-drupalorg_handbook clear-block">
+  <div class="block-inner">
+          <h2>Page status</h2>
+    
+    <div class="block-content">
+      <p class="page-status page-ok"><span>No known problems</span></p><p><a href="https://drupal.org/user?destination=node%2F1359598">Log in to edit this page</a></p>    </div>
+  </div>
+</div>
+<div id="block-drupalorg_handbook-about-page" class="block block-drupalorg_handbook clear-block">
+  <div class="block-inner">
+          <h2>About this page</h2>
+    
+    <div class="block-content">
+      <dl class="about-section">
+      <dt>Audience</dt>
+    <dd class="terms">Site administrators</dd>
+      <dt>Level</dt>
+    <dd class="terms">Intermediate</dd>
+      <dt>Keywords</dt>
+    <dd class="terms"><a href="https://drupal.org/taxonomy/term/31646">Apache Solr</a>, <a href="https://drupal.org/taxonomy/term/31442">apachesolr</a>, <a href="https://drupal.org/taxonomy/term/32314">iis</a>, <a href="https://drupal.org/taxonomy/term/32312">windows</a></dd>
+  </dl>
+    </div>
+  </div>
+</div>
+<div id="block-book-0" class="block block-book clear-block">
+  <div class="block-inner">
+          <h2><a href="https://drupal.org/documentation/build" class="book-title">Site Building Guide</a></h2>
+    
+    <div class="block-content">
+      <ul class="menu"><li class="collapsed first"><a href="https://drupal.org/best-practices">Best practices </a></li>
+<li class="expanded active-trail"><a href="https://drupal.org/node/1241116">Building the site functionality</a><ul class="menu"><li class="collapsed first"><a href="https://drupal.org/node/924538">Actions and Workflows</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/1856954">CRM Systems</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/206719">Commerce and Advertising</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/627270">Connecting to other Sites, Systems, and Data</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/255599">Content Authoring Modules</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/206776">Content Display Modules</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/206786">Content Modules</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/1207628">Content Recommendation</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/627222">Dates and Events</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/779268">Documentation tools</a></li>
+<li class="leaf"><a href="https://drupal.org/node/1811534">Dynamic menu elements with tokens</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/206728">E-Mail and Messaging</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/1284464">Features packages</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/627232">Forms</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/1697548">Games and Amusements</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/241563">Geographical data and maps</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/1199204">Input formats</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/627244">Media and Files </a></li>
+<li class="collapsed"><a href="https://drupal.org/documentation/modules/rest">REST: exposing data as RESTful web services</a></li>
+<li class="expanded active-trail"><a href="https://drupal.org/node/627282">Search</a><ul class="menu"><li class="collapsed first"><a href="https://drupal.org/documentation/modules/search">Search: an internal site search system</a></li>
+<li class="expanded last active-trail"><a href="https://drupal.org/node/228411">Search modules</a><ul class="menu"><li class="leaf first"><a href="https://drupal.org/node/444020">Comparison of Search modules</a></li>
+<li class="expanded active-trail"><a href="https://drupal.org/node/343467">Apache Solr Search Integration</a><ul class="menu"><li class="expanded first active-trail"><a href="https://drupal.org/node/1053074">Installing and configuring a Solr server</a><ul class="menu"><li class="collapsed first"><a href="https://drupal.org/node/716642">Installing Solr on Ubuntu</a></li>
+<li class="leaf"><a href="https://drupal.org/node/658426">Installing Solr on CentOS</a></li>
+<li class="leaf"><a href="https://drupal.org/node/760798">Installing Solr on Apple - Mac OS X</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/716632">Installing Solr on Tomcat</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/507284">Automatically Start Apache Solr</a></li>
+<li class="leaf"><a href="https://drupal.org/node/484800">Apache Solr Multi-core Setup using Jetty</a></li>
+<li class="leaf"><a href="https://drupal.org/node/967628">Apache Solr Multi-core on Debian Squeeze using packages and HTTP authentication</a></li>
+<li class="leaf"><a href="https://drupal.org/node/340354">Apache Solr schema.xml</a></li>
+<li class="leaf"><a href="https://drupal.org/node/1323594">Apachesolr Caching</a></li>
+<li class="leaf"><a href="https://drupal.org/node/1053068">Deployment of Solr servers for performance and availability</a></li>
+<li class="leaf active-trail"><a href="./Installing Apache Solr on Windows 2008 with Jetty Running as a Service   drupal.org_files/Installing Apache Solr on Windows 2008 with Jetty Running as a Service   drupal.org.htm" class="active">Installing Apache Solr on Windows 2008 with Jetty Running as a Service</a></li>
+<li class="leaf"><a href="https://drupal.org/node/1338914">Manipulating Apache Solr search results using the QueryElevationComponent and elevate.xml</a></li>
+<li class="leaf last"><a href="https://drupal.org/documentation/modules/search/quick-start-solr-3">Quick start for Solr 3.6</a></li>
+</ul></li>
+<li class="leaf"><a href="https://drupal.org/node/443986">Exposed Solr Hooks (6.x-1.x) for developers</a></li>
+<li class="leaf"><a href="https://drupal.org/node/443980">Troubleshooting Solr</a></li>
+<li class="leaf"><a href="https://drupal.org/node/1616940">A Solr Query's tale</a></li>
+<li class="leaf"><a href="https://drupal.org/node/1135098">Concepts: use of the Dismax/EDismax query handler</a></li>
+<li class="leaf"><a href="https://drupal.org/node/1965932">Exposing fields to Solr</a></li>
+<li class="leaf"><a href="https://drupal.org/node/1760442">Sequence diagram / flow diagram</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/1053102">Tips and suggestions for module customization</a></li>
+<li class="leaf"><a href="https://drupal.org/node/1620194">WHAT/WHERE search + Solr 3.6 + location(lat/lng) + radius based search</a></li>
+<li class="leaf last"><a href="https://drupal.org/node/447564">Sites Using ApacheSolr</a></li>
+</ul></li>
+<li class="collapsed"><a href="https://drupal.org/node/1760462">Acquia Search</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/846686">Apache Solr AJAX</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/969292">Apache Solr Money Slider</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/828468">Apache Solr Multisite Search</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/364131">Autocomplete Node Finder</a></li>
+<li class="leaf"><a href="https://drupal.org/node/1321166">Facet API</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/477074">Finder</a></li>
+<li class="leaf"><a href="https://drupal.org/node/530492">Finder Wizard</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/1250878">Search API</a></li>
+<li class="leaf"><a href="https://drupal.org/node/226663">Search Attachments</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/358489">Search Lucene API</a></li>
+<li class="leaf"><a href="https://drupal.org/node/441892">Search by Page</a></li>
+<li class="collapsed last"><a href="https://drupal.org/node/499770">The eXtensible Catalog (XC) Drupal Toolkit</a></li>
+</ul></li>
+</ul></li>
+<li class="collapsed"><a href="https://drupal.org/node/1158446">Search Engine Optimization</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/627224">Social Networking and Collaboration</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/627278">User-Generated Content</a></li>
+<li class="leaf last"><a href="https://drupal.org/node/1547120">WYSIWYG configuration / image handling / editor role management</a></li>
+</ul></li>
+<li class="collapsed"><a href="https://drupal.org/node/340271">Contributed modules</a></li>
+<li class="collapsed"><a href="https://drupal.org/node/1283408">Core modules</a></li>
+<li class="collapsed"><a href="https://drupal.org/documentation/build/distributions">Distributions</a></li>
+<li class="collapsed"><a href="https://drupal.org/documentation/customization/howto">HowTos</a></li>
+<li class="collapsed last"><a href="https://drupal.org/documentation/site-recipes">Site recipes</a></li>
+</ul>    </div>
+  </div>
+</div>
+<div id="block-drupalorg_handbook-license" class="block block-drupalorg_handbook clear-block">
+  <div class="block-inner">
+    
+    <div class="block-content">
+      Drupal’s online documentation is © 2000-2013 by the individual contributors and can be used in accordance with the <a href="https://drupal.org/node/14307">Creative Commons License, Attribution-ShareAlike 2.0</a>. PHP code is distributed under the <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html">GNU General Public License</a>. Comments on documentation pages are used to improve content and then deleted.    </div>
+  </div>
+</div>
+          </div> <!-- /#column-right-region -->
+        </div> <!-- /#column-right -->
+      
+          </div> <!-- /#page-inner -->
+  </div> <!-- /#page -->
+
+  <div id="footer">
+    <div id="footer-inner" class="container-12 clear-block">
+              <div id="footer-region" class="grid-12">
+          <div id="footer-region-inner" class="clear-block">
+            <div class="grid-footer alpha"><ul><li class="0 first"><a href="http://drupal.org/news">Drupal News</a></li>
+<li class="1"><a href="http://drupal.org/planet" title="News from Drupal community members">Planet Drupal</a></li>
+<li class="2"><a href="https://association.drupal.org/news" title="News from association.drupal.org">Association News</a></li>
+<li class="3"><a href="http://drupal.org/social-media" title="Drupal on social media">Social Media Directory</a></li>
+<li class="4"><a href="http://drupal.org/security" title="Advisories from the security team">Security Announcements</a></li>
+<li class="5 last"><a href="http://groups.drupal.org/jobs" title="Jobs posted on groups.drupal.org">Jobs</a></li>
+</ul></div><div class="grid-footer"><ul><li class="0 first"><a href="http://drupal.org/community">Community</a></li>
+<li class="1"><a href="http://drupal.org/getting-involved" title="Learn how to contribute to the Drupal project">Getting Involved</a></li>
+<li class="2"><span><a href="http://drupal.org/drupal-services" title="People and organizations offering Drupal services">Services</a>, <a href="http://drupal.org/training" title="People and organizations offering Drupal training">Training</a> &amp; <a href="http://drupal.org/hosting" title="Organizations offering Drupal hosting">Hosting</a></span></li>
+<li class="3"><a href="http://groups.drupal.org/groups" title="groups.drupal.org">Groups &amp; Meetups</a></li>
+<li class="4 last"><a href="http://drupal.org/drupalcon" title="Upcoming and past DrupalCons">DrupalCon</a></li>
+</ul></div><div class="grid-footer"><ul><li class="0 first"><a href="http://drupal.org/start">Get Started</a></li>
+<li class="1"><a href="http://drupal.org/documentation" title="Guidebooks and documentation for working with Drupal">Documentation Home</a></li>
+<li class="2"><a href="http://drupal.org/documentation/install" title="Guide for installing Drupal">Installation Guide</a></li>
+<li class="3"><a href="http://drupal.org/documentation/build" title="Guide for building and extending Drupal sites">Site Building Guide</a></li>
+<li class="4"><a href="http://drupal.org/support" title="Drupal support options">Support</a></li>
+<li class="5 last"><a href="http://api.drupal.org/" title="Drupal API Reference">api.drupal.org</a></li>
+</ul></div><div class="grid-footer"><ul><li class="0 first"><a href="http://drupal.org/download">Download &amp; Extend</a></li>
+<li class="1"><a href="http://drupal.org/project/drupal" title="Download the latest version of the Drupal software">Drupal Core</a></li>
+<li class="2"><a href="http://drupal.org/project/modules" title="Download add-on features and functionality">Modules</a></li>
+<li class="3"><a href="http://drupal.org/project/themes" title="Download pre-designed styles for Drupal">Themes</a></li>
+<li class="4 last"><a href="http://drupal.org/project/distributions" title="Download a pre-packaged Drupal site">Distributions</a></li>
+</ul></div><div class="grid-footer omega"><ul><li class="0 first"><a href="http://drupal.org/about">About</a></li>
+<li class="1"><a href="http://drupal.org/druplicon" title="Drupal’s mascot">Druplicon</a></li>
+<li class="2"><a href="https://association.drupal.org/about" title="About the Drupal Association">The Drupal Association</a></li>
+<li class="3"><a href="https://association.drupal.org/advertising" title="How to advertise on Drupal.org">Advertise</a></li>
+<li class="4"><a href="http://drupal.org/node/179723" title="About Drupal.org">About Drupal.org</a></li>
+<li class="5 last"><a href="http://drupal.org/about/accessibility">Web accessibility</a></li>
+</ul></div>          </div> <!-- /#footer-region-inner -->
+        </div> <!-- /#footer-region -->
+                    <div id="footer-message" class="grid-12">
+          <div id="footer-message-inner" class="clear-block">
+            <p>Drupal is a <a href="http://drupal.com/trademark">registered trademark</a> of <a href="http://buytaert.net/">Dries Buytaert</a>.</p>
+          </div> <!-- /#footer-message-inner -->
+        </div> <!-- /#footer-message -->
+          </div> <!-- /#footer-inner -->
+  </div> <!-- /#footer -->
+  <div style="display: none;"><a href="http://drupal.org/sites/all/modules/httpbl/donotremove.php">nobody click here</a></div><script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-2360451-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+
+
+</body></html>
