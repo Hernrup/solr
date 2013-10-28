@@ -70,6 +70,12 @@ namespace SolrNet.Impl {
                 return PostStream(relativeUrl, "text/xml; charset=utf-8", content, null);
         }
 
+        public string Post(string relativeUrl, string s, IEnumerable<KeyValuePair<string, string>> parameters) {
+            var bytes = Encoding.UTF8.GetBytes(s);
+            using (var content = new MemoryStream(bytes))
+                return PostStream(relativeUrl, "text/xml; charset=utf-8", content, parameters);
+        }
+
         public string PostStream(string relativeUrl, string contentType, Stream content, IEnumerable<KeyValuePair<string, string>> parameters) {
             var u = new UriBuilder(serverURL);
             u.Path += relativeUrl;

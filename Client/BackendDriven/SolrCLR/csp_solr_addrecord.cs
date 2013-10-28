@@ -13,8 +13,8 @@ using Microsoft.SqlServer.Server;
 public partial class StoredProcedures
 {
     [Microsoft.SqlServer.Server.SqlProcedure]
-    public static void csp_solr_addrecord ()
+    public static void csp_solr_addrecord(string endpoint, string id, string recordclass, int idrecord, string descriptive, string content, bool commit)
     {
-        Actions.addRecord(@"http://MH:8983/solr/lime", "tmp002_1", "classname2", "002", "Some content2", true);
+        API.addRecord(endpoint, id, recordclass, idrecord, descriptive, content, commit);
     }
 }

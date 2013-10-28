@@ -48,9 +48,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Client\Client.csproj">
+    <ProjectReference Include="..\Client\SolrClient.csproj">
       <Project>{bb1e621c-a496-4ef8-929e-25037c0b585d}</Project>
-      <Name>Client</Name>
+      <Name>SolrClient</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

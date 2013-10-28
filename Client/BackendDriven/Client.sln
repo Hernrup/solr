@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{BB1E621C-A496-4EF8-929E-25037C0B585D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolrClient", "Client\SolrClient.csproj", "{BB1E621C-A496-4EF8-929E-25037C0B585D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{9714CA6F-0560-4159-A677-317ECA3E3918}"
 EndProject
@@ -35,7 +35,6 @@ Global
 		{A453603A-5F03-455A-80B4-8C1A26BC6127}.Release|Any CPU.Build.0 = Release|Any CPU
 		{06E804C9-7548-496A-BE7B-B8BA4BD5D1B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{06E804C9-7548-496A-BE7B-B8BA4BD5D1B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{06E804C9-7548-496A-BE7B-B8BA4BD5D1B7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{06E804C9-7548-496A-BE7B-B8BA4BD5D1B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06E804C9-7548-496A-BE7B-B8BA4BD5D1B7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{06E804C9-7548-496A-BE7B-B8BA4BD5D1B7}.Release|Any CPU.Deploy.0 = Release|Any CPU

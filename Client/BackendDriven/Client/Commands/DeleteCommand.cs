@@ -17,7 +17,9 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Xml;
 using System.Xml.Linq;
 using SolrNet.Commands.Parameters;
 using SolrNet.Utils;
@@ -28,10 +30,39 @@ namespace SolrNet.Commands {
     /// </summary>
 	public class DeleteCommand : ISolrCommand {
 
+        string id;
+
+        public DeleteCommand(string id) {
+            this.id = id;
+        }
+
+
+        public string ConvertToXml() {
+
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.OmitXmlDeclaration = true;
+            settings.ConformanceLevel = ConformanceLevel.Fragment;
+
+            string xml;
+            using (var sw = new StringWriter()) {
+                using (var xw = XmlWriter.Create(sw, settings)) {
+
+                    xw.WriteStartElement("delete");
+                    xw.WriteStartElement("id");
+                    xw.WriteRaw(this.id);
+                    xw.WriteEndElement();
+                    xw.WriteEndElement();
+                }
+
+                xml = sw.ToString();
+            }
+
+            return xml;
+        }
+
 		public string Execute(ISolrConnection connection) {
-			//TODO: implement
-			//return connection.Post("/update", deleteNode.ToString(SaveOptions.DisableFormatting));
-            return "";
+            var xml = ConvertToXml();
+            return connection.Post("/update", xml);
 		}
 	}
 }
