@@ -20,7 +20,7 @@ namespace Client {
 
             var param = new List<KeyValuePair<string, string>>();
             param.Add(KV.Create("id",id));
-            param.Add(KV.Create("class", recordclass));
+            param.Add(KV.Create("ldeclass", recordclass));
             param.Add(KV.Create("idrecord", idrecord.ToString()));
             param.Add(KV.Create("text", content));
             param.Add(KV.Create("title", descriptive));
@@ -46,7 +46,7 @@ namespace Client {
                 ExtractOnly = false,
                 Fields = new[] { 
                             new ExtractField("idrecord", idrecord.ToString()), 
-                            new ExtractField("class", recordclass),
+                            new ExtractField("ldeclass", recordclass),
                             new ExtractField("title", descriptive)
                         }
             };
@@ -75,7 +75,7 @@ namespace Client {
 
         public static List<Dictionary<string, string>> fetch(string endpoint, string searchString, int start, int rows) {
             var connection = new SolrConnection(endpoint);
-            var command = new FetchCommand(searchString, start, rows, new string[] { "id", "class", "idrecord", "title" });
+            var command = new FetchCommand(searchString, start, rows, new string[] { "id", "ldeclass", "idrecord", "title" });
             var result = new List<Dictionary<string,string>>();
 
             var resultXml = command.Execute(connection);

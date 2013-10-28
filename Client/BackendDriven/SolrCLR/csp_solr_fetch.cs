@@ -31,7 +31,7 @@ public partial class StoredProcedures {
 
         foreach (Dictionary<string,string> dic in result) {
             rec.SetSqlString(0, new SqlString(dic["id"]));
-            rec.SetSqlString(1, new SqlString(dic.ContainsKey("class") ? dic["class"] : null));
+            rec.SetSqlString(1, new SqlString(dic.ContainsKey("ldeclass") ? dic["class"] : null));
             rec.SetSqlInt32(2, new SqlInt32(dic.ContainsKey("idrecord") ? Int32.Parse(dic["idrecord"]) : 0));
             rec.SetSqlString(3, new SqlString(dic.ContainsKey("title") ? dic["title"] : null));
             pipe.SendResultsRow(rec);

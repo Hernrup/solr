@@ -112,7 +112,7 @@
    <field name="_root_" type="string" indexed="true" stored="false"/>
 
 
-	<field name="class" type="string" indexed="true" stored="true" />
+	<field name="ldeclass" type="string" indexed="true" stored="true" />
 	<field name="idrecord" type="int" indexed="true" stored="true" />
    
    <!-- Common metadata fields, named specifically to match up with
