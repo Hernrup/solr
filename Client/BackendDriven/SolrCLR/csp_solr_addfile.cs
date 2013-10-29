@@ -13,8 +13,9 @@ using Microsoft.SqlServer.Server;
 public partial class StoredProcedures
 {
     [Microsoft.SqlServer.Server.SqlProcedure]
-    public static void csp_solr_addfile(string endpoint, string id, string recordclass, int idrecord, string descriptive, string fileName, string binaryData, bool commit)
+    public static void csp_solr_addfile(string endpoint, string id, string recordclass, int idrecord, string descriptive, string fileName, SqlBytes binaryData, bool commit)
     {
-        API.addFile(endpoint, id, recordclass, idrecord, descriptive, fileName, binaryData, commit);
+
+       API.addFile(endpoint, id, recordclass, idrecord, descriptive, fileName, binaryData.Buffer, commit);
     }
 }

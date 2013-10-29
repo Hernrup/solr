@@ -1,3 +1,11 @@
+#############
+## Custom
+#############
+index/
+tlog/
+*.log
+
+
 #################
 ## Eclipse
 #################
@@ -213,9 +221,4 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
-#############
-## Custom
-#############
-index/
-tlog/
 

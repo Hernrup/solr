@@ -21,7 +21,7 @@ GO
 RAISERROR ('CREATE assembly SolrClient',0,0) WITH NOWAIT
 CREATE ASSEMBLY [SolrClient]
 AUTHORIZATION [dbo]
-FROM 'F:\dev\solr\Client\BackendDriven\SolrCLR\bin\Debug\SolrClient.dll'
+FROM 'E:\Temp\mhe\SolrClient.dll'
 WITH PERMISSION_SET = UNSAFE;
 
 GO
@@ -29,7 +29,7 @@ GO
 RAISERROR ('CREATE assembly SolrCLR',0,0) WITH NOWAIT
 CREATE ASSEMBLY [SolrCLR]
 AUTHORIZATION [dbo]
-FROM 'F:\dev\solr\Client\BackendDriven\SolrCLR\bin\Debug\SolrCLR.dll'
+FROM 'E:\Temp\mhe\SolrCLR.dll'
 WITH PERMISSION_SET = UNSAFE;
 
 GO
@@ -61,7 +61,7 @@ PRINT N'Creating [dbo].[csp_solr_addfile]...';
 
 GO
 CREATE PROCEDURE [dbo].[csp_solr_addfile]
-@endpoint NVARCHAR (4000), @id NVARCHAR (4000), @recordclass NVARCHAR (4000), @idrecord INT, @descriptive NVARCHAR (4000), @fileName NVARCHAR (4000), @binaryData NVARCHAR (4000), @commit BIT
+@endpoint NVARCHAR (4000), @id NVARCHAR (4000), @recordclass NVARCHAR (4000), @idrecord INT, @descriptive NVARCHAR (4000), @fileName NVARCHAR (4000), @binaryData VARBINARY (MAX), @commit BIT
 AS EXTERNAL NAME [SolrCLR].[StoredProcedures].[csp_solr_addfile]
 
 

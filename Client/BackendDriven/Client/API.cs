@@ -34,11 +34,12 @@ namespace Client {
             }
         }
 
-        public static void addFile(string endpoint, string id, string recordclass, int idrecord, string descriptive, string fileName, string binaryData, bool commit) {
+        public static void addFile(string endpoint, string id, string recordclass, int idrecord, string descriptive, string fileName, byte[] binaryData, bool commit) {
             
             var connection = new SolrConnection(endpoint);
 
-            byte[] data = Convert.FromBase64String(binaryData);
+            //byte[] data = Convert.FromBase64String(binaryData);
+            byte[] data = binaryData;
             MemoryStream stream = new MemoryStream(data);
 
             var param = new ExtractParameters(stream, id, fileName) {
